@@ -20,7 +20,6 @@ Route::middleware(IncrementUserResponse::class)->group(function () {
     });
 
     Route::prefix('project')->group(function () {
-
         Route::get('/{project}?', [ProjectController::class, 'index']);
 
         Route::post('/', [ProjectController::class, 'store']);

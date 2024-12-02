@@ -37,12 +37,29 @@ const ProjectProvider = ({children})=>{
             return error;
         }
     }
+    const deleteProject = async  (data) =>{
+        try{
+            const respons = await axios.request({
+                url:'http://localhost:8000/project/',
+                method : 'DELETE',
+                data:data,
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            });
+            return respons.data;
+    
+        }catch (error){
+            return error;
+        }
+    }
 
     return (
         <ProjectContext.Provider
         value={{
             addProject,
             editProject,
+            deleteProject,
         }}
         >
 
