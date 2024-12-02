@@ -4,19 +4,38 @@ export const ProjectContext = createContext();
 
 const ProjectProvider = ({children})=>{
 
-    const addProject =   (data) =>{
-        const result =   apiRoutes({
-            route:"project/store",
-            method:"POST",
-            body:data,
-        })
+    const addProject =  async (data) =>{
+        try{
+            const respons = await axios.request({
+                url:'http://localhost:8000/project/store',
+                method : 'POST',
+                data:data,
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            });
+            return respons.data;
+    
+        }catch (error){
+            return error;
+        }
+    
     }
-    const editProject =   (data) =>{
-        const result =   apiRoutes({
-            route:"project/addInstructor",
-            method:"POST",
-            body:data,
-        })
+    const editProject = async  (data) =>{
+        try{
+            const respons = await axios.request({
+                url:'http://localhost:8000/project/',
+                method : 'PUT',
+                data:data,
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            });
+            return respons.data;
+    
+        }catch (error){
+            return error;
+        }
     }
 
     return (
