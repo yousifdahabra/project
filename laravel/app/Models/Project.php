@@ -9,7 +9,6 @@ class Project extends Model
     protected $fillable = [
         'name',
         'description',
-        'memeber_id',
     ];
 
 }
