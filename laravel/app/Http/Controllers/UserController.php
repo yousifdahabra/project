@@ -7,7 +7,17 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function add_user(Request $request){
+    public function index($id)
+    {
+        if($id > 0){
+            $user = User::findOrFail($id);
+        }else{
+            $user = User::all();
+        }
+        return response()->json(['users' => $user]);
+    }
+
+    public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|string',
@@ -30,7 +40,7 @@ class UserController extends Controller
     }
 
 
-    public function update_user(Request $request,$id){
+    public function update(Request $request,$id){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|string',
@@ -54,7 +64,7 @@ class UserController extends Controller
         ],201);
     }
 
-    public function delete_user(Request $request,$id){
+    public function destroy(Request $request,$id){
 
         $user = User::findOrFail($id);
         $user->delete();
