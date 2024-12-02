@@ -5,6 +5,7 @@ use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 Route::prefix('user')->group(function () {
 
     Route::get('/{user}?', [UserController::class, 'index']);
