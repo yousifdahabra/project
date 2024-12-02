@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,9 +11,18 @@ Route::prefix('user')->group(function () {
 
     Route::post('/', [UserController::class, 'store']);
 
-    Route::get('/{user}', [UserController::class, 'show']);
-
     Route::put('/{user}', [UserController::class, 'update']);
 
     Route::delete('/{user}', [UserController::class, 'destroy']);
+});
+
+Route::prefix('project')->group(function () {
+
+    Route::get('/{project}?', [ProjectController::class, 'index']);
+
+    Route::post('/', [ProjectController::class, 'store']);
+
+    Route::put('/{project}', [ProjectController::class, 'update']);
+
+    Route::delete('/{project}', [ProjectController::class, 'destroy']);
 });

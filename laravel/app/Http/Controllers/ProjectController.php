@@ -7,6 +7,16 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
+    public function index($id)
+    {
+        if($id > 0){
+            $project = Project::findOrFail($id);
+        }else{
+            $project = Project::all();
+        }
+        return response()->json(['project' => $project]);
+    }
+    
     public function add_project(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
